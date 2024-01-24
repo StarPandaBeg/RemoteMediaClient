@@ -1,0 +1,14 @@
+msgid "example"
+msgstr "This is an example in device"
+
+msgid "status_connected"
+msgstr "Подключено"
+
+msgid "status_disconnected"
+msgstr "Недоступно"
+
+msgid "status_progress"
+msgstr "Подождите"
+
+msgid "error_no_connection"
+msgstr "Проверьте подключение к приложению"

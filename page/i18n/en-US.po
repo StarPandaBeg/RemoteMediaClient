@@ -1,0 +1,14 @@
+msgid "example"
+msgstr "This is an example in device"
+
+msgid "status_connected"
+msgstr "Connected"
+
+msgid "status_disconnected"
+msgstr "Offline"
+
+msgid "status_progress"
+msgstr "Wait"
+
+msgid "error_no_connection"
+msgstr "Check connection with the app"

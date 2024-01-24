@@ -1,0 +1,59 @@
+{
+  "configVersion": "v2",
+  "app": {
+    "appId": 26100,
+    "appName": "EyeOfGod",
+    "appType": "app",
+    "version": {
+      "code": 1,
+      "name": "1.0.0"
+    },
+    "icon": "icon.png",
+    "vender": "zepp",
+    "description": "empty application"
+  },
+  "permissions": [
+    "data:os.device.info",
+    "device:os.local_storage",
+    "data:user.hd.calorie"
+  ],
+  "runtime": {
+    "apiVersion": {
+      "compatible": "2.0.0",
+      "target": "2.0.0",
+      "minVersion": "2.0.0"
+    }
+  },
+  "targets": {
+    "390x450-gts-4": {
+      "module": {
+        "page": {
+          "pages": ["page/home/index.page", "page/sound/index.page"]
+        },
+        "app-side": {
+          "path": "app-side/index"
+        }
+      },
+      "platforms": [
+        {
+          "name": "gts4",
+          "deviceSource": 7995648
+        },
+        {
+          "name": "gts4-w",
+          "deviceSource": 7995649
+        }
+      ],
+      "designWidth": 390
+    }
+  },
+  "i18n": {
+    "en-US": {
+      "appName": "Eye Of God"
+    },
+    "ru-RU": {
+      "appName": "Eye Of God"
+    }
+  },
+  "defaultLanguage": "en-US"
+}
