@@ -1,22 +1,18 @@
 {
   "configVersion": "v2",
   "app": {
-    "appId": 26100,
-    "appName": "EyeOfGod",
+    "appId": 65999,
+    "appName": "Remote Media",
     "appType": "app",
     "version": {
       "code": 1,
       "name": "1.0.0"
     },
     "icon": "icon.png",
-    "vender": "zepp",
-    "description": "empty application"
+    "vender": "StarPanda",
+    "description": "Client application for remote desktop media control"
   },
-  "permissions": [
-    "data:os.device.info",
-    "device:os.local_storage",
-    "data:user.hd.calorie"
-  ],
+  "permissions": ["data:os.device.info", "device:os.local_storage"],
   "runtime": {
     "apiVersion": {
       "compatible": "2.0.0",
@@ -49,10 +45,10 @@
   },
   "i18n": {
     "en-US": {
-      "appName": "Eye Of God"
+      "appName": "Remote Media"
     },
     "ru-RU": {
-      "appName": "Eye Of God"
+      "appName": "Remote Media"
     }
   },
   "defaultLanguage": "en-US"
