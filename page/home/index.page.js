@@ -2,12 +2,14 @@ import * as hmBle from "@zos/ble";
 import * as hmUI from "@zos/ui";
 import { getText } from "@zos/i18n";
 import { log as Logger } from "@zos/utils";
+import { sessionStorage } from "@zos/storage";
 
 import * as customWidgets from "./index.style";
 import { STATUS_COLORS } from "../../utils/colors";
 import * as constants from "../../utils/constants";
 import { Reactive } from "../../utils/reactive";
 import { secondsToHms } from "../../utils/func";
+import { push } from "@zos/router";
 
 const Log = Logger.getLogger("eyeofgod-page-home");
 const { messageBuilder: MessageBuilder } = getApp()._options.globalData;
@@ -20,6 +22,7 @@ Page({
       playing: false,
       title: "",
       subtitle: "",
+      volume: 0,
 
       hasNext: false,
       hasPrev: false,
@@ -47,6 +50,7 @@ Page({
     this.buildMain();
     this.buildDisconnected();
 
+    this.reloadFromSession();
     this.onConnectionStatusChange(this.state.isConnected);
   },
 
@@ -86,6 +90,7 @@ Page({
       media.data.subtitle = mediaData.song_author;
       media.data.hasPrev = mediaData.has_prev;
       media.data.hasNext = mediaData.has_next;
+      media.data.volume = mediaData.volume;
     }
   },
 
@@ -189,6 +194,16 @@ Page({
       hmUI.widget.BUTTON,
       customWidgets.NEXT_DISABLED_BUTTON
     );
+    const volume = group.createWidget(hmUI.widget.BUTTON, {
+      ...customWidgets.SOUND_BUTTON,
+      click_func: (widget) => {
+        sessionStorage.setItem("media", this.state.mediaInfo.data);
+        push({
+          url: "page/sound/index.page",
+          params: this.state.mediaInfo.data,
+        });
+      },
+    });
 
     prevDisabled.setProperty(hmUI.prop.VISIBLE, false);
     nextDisabled.setProperty(hmUI.prop.VISIBLE, false);
@@ -250,5 +265,19 @@ Page({
       this.onInfoIntervalTick.bind(this),
       5000
     );
+  },
+
+  reloadFromSession() {
+    const media = this.state.mediaInfo;
+    let loadedMedia = sessionStorage.getItem("media", media.data);
+    if (typeof loadedMedia === "string" || loadedMedia instanceof String) {
+      loadedMedia = JSON.parse(loadedMedia);
+    }
+
+    Object.keys(media.data).forEach((key) => {
+      if (loadedMedia[key] !== null && loadedMedia[key] !== undefined) {
+        media.data[key] = loadedMedia[key];
+      }
+    });
   },
 });
